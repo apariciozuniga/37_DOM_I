@@ -13,46 +13,43 @@ function validateForm(){
 	
 var nombre=document.getElementById("name").value;
 var apellido=document.getElementById("lastname").value;	
-var email=document.getElementById("input-email").value;
-var password=document.getElementById("input-password").value;
-var indice = document.getElementsByTagName("select").value;
+var email=document.getElementById("email").value;
+var password=document.getElementById("password").value;
+var indice= document.getElementsByTagName("option").selectedIndex;
 
 
 	//NOMBRE
 		
-	if (nombre.length == 0 || /^\s+$/.test(nombre)){
+	if (nombre.length == 0 || /^\s+$/.test(nombre)) {	
 		alert("El campo de nombre esta vacio");
-		return false;
+		return false;	
 	}
 	else if (!(/^[a-zA-Z\s]*$/.test(nombre))){
-		alert("Solo acepta caracteres de la A-Z");
-		return false;
-		
+		alert("El campo nombre solo acepta caracteres de la A-Z :)");
+		return false;		
 	}
 	else if (!(/^[A-Z\s]*$/.test(nombre[0]))){
 		alert("Escribe tu nombre con mayuscula");
-		return false;
-		
+		return false;	
 	}
 
 	 
 	 //APELLIDO
 	
-	if (apellido.length == 0 || /^\s+$/.test(apellido)){
+	if (apellido.length == 0 || /^\s+$/.test(apellido)) {
 		alert("El campo de apellido esta vacio");
-		return false;
-	
+		
 	}
 	else if (!(/^[a-zA-Z\s]*$/.test(apellido))){
-		alert("Solo acepta caracteres de la A-Z");
+		alert("El campo apellido solo acepta caracteres de la A-Z :)");
+		return false;
 		
 	}
 	else if (!(/^[A-Z\s]*$/.test(apellido[0]))){
 		alert("Escribe tu apellido con mayuscula");
-		
-	
-
+		return false;
 	}
+
 	
 	 //PASSWORD
 	if (password.length == 0 || /^\s+$/.test(password)) {
@@ -60,33 +57,32 @@ var indice = document.getElementsByTagName("select").value;
 			return false;
 	}
  
-	else if(!(password([6]))){
-	 	alert("Tu password debe tener al menos 6 caracteres");
+	else if(password==/^\d{6}$/){
+	 	alert("Tu contraseña debe tener al menos 6 caracteres");
+	 	return false;
 	 	
 	 }
-	else if (!(/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)/.test(password))) {	
-		alert("introduce caracteres correctos");								
+	else if (/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)/.test(password)) {	
+		alert("introduce caracteres correctos");
+		return false;								
   		
+ 	}
+	else if(!(password == password || password==123456 || password == 098754)){
+		alert("Prueba otra contraseña")
 	}
 	
 	 
 	 //EMAIL
 	 if (email.length == 0 || /^\s+$/.test(email)) {
-	 	alert("Escribe tu correo")
+	 	alert("Escribe tu correo");
+	 	return false;
 	 }
-
-	else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/).test(email))  {
-		alert("La direccion de email es correcta");
-	}
-	else if(email == 0){
-		alert("Los campos de password no pueden quedar vacios");
-	}
-	
 	
 	//LISTA
-	if(indice.length == 0 ) {
+	if(indice == null || indice == 0){
   		alert("Debe elegir una opcion");
-  	}	
+  		return false;
+  	}
  
 }
 
